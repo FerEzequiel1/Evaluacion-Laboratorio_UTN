@@ -35,7 +35,7 @@ def obtener_datos(datos:str)->list:
     return lista
 
 # Se usa de esta forma dandole como parámetro la lista que queremos normalizar
-# datos = obtener_datos("./integrador00/DBZ.csv")
+datos = obtener_datos("./evaluacion01/DBZ.csv")
 
 
 # 2
@@ -95,6 +95,37 @@ def obtener_grupo_raza_personajes(lista_personajes,caracteristica):
 # Esta funcion lee e imprime los datos que tenga la lista parametrada en el primer parámetro.
 # En el segundo parametro hacemos referencia a la caracteristica de los personajes que conformarn
 # la lista.
+def aumento_de_poder(lista_de_personajes):
+    
+    lista_de_raza={}
+    
+    lista_de_saiyan = obtener_grupo_raza_personajes(lista_de_personajes,"raza")
+    
+    raza_buscada = "Saiyan"
+    
+    for raza,personaje in lista_de_saiyan.items():
+        
+        for personaje in personaje:
+            if raza == "Saiyan":
+                nombre = personaje["nombre"]
+                for personaje_saiyan in lista_de_personajes:
+                    if personaje_saiyan["nombre"] == nombre:
+                        poder_de_pelea=(personaje_saiyan["poder_de_pelea"])
+                        poder_de_pelea_50 = poder_de_pelea/2
+                        poder_de_pelea_total =poder_de_pelea+poder_de_pelea_50
+                        
+                        poder_de_ataque=(personaje["poder_de_ataque"])
+                        poder_de_ataque_50 = poder_de_ataque/2
+                        poder_de_ataque_total =poder_de_ataque+poder_de_ataque_50
+                        
+                        habilidades = personaje_saiyan["habilidades"]
+                        
+                        with open("saiyan_cambiados.txt", "a") as archivo:
+                                archivo.write(nombre + "\n")
+                     
+            
+aumento_de_poder(datos)
+
 
 def leer_personajes_por_raza(lista,caracteristica):
     for raza, personajes in lista.items():
@@ -329,6 +360,9 @@ menu = ["1-Traer datos del archivo. ",
         "8-Salir."]
 
 
+
+
+
 def mostrar_menu(dato_fuente):
     normalizar_dato = False
     datos_guardados = False
@@ -395,4 +429,4 @@ def mostrar_menu(dato_fuente):
             case 8:
                 break
             
-mostrar_menu("./evaluacion01/DBZ.csv")
+# mostrar_menu("./evaluacion01/DBZ.csv")
