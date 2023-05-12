@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 
-menu = True
+
 seguir = True
 
 # 1
@@ -70,16 +70,16 @@ def obtener_grupo_raza_personajes(lista_personajes,caracteristica):
     lista_de_caracteristicas = {}
 
     for personaje in lista_personajes:
-        razas_lista = re.split('-',personaje[caracteristica])  
+        caracteristica_lista = re.split('-',personaje[caracteristica])  
         nombre = personaje['nombre']
         poder_ataque = personaje['poder_de_ataque']
         
-        if razas_lista == ['Three', 'Eyed People']:
-            razas_lista= ['Three-Eyed People']
-        elif razas_lista == ['Shin','jin']:
-            razas_lista = ['Shin-jin']
+        if caracteristica_lista == ['Three', 'Eyed People']:
+            caracteristica_lista= ['Three-Eyed People']
+        elif caracteristica_lista == ['Shin','jin']:
+            caracteristica_lista = ['Shin-jin']
         
-        for raza in razas_lista:
+        for raza in caracteristica_lista:
             if raza not in lista_de_caracteristicas:
                 lista_de_caracteristicas[raza] = [{'nombre':nombre, 'poder_de_ataque': poder_ataque}]
             else:
